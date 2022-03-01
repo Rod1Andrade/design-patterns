@@ -19,9 +19,20 @@ public class FullFactoryMethod {
 
         productFactory = new ProductConcreteFactoryPlus();
         productFactory.create().sayHi();
+
+        // Lamda test
+        TestLambda testLambda = new TestLambda();
+        testLambda.create(() -> new ProductConcrete()).sayHi();;
+
     }
 
-    // Creator
+    static class TestLambda {
+        Product create(ProductFactory productFactory) {
+            return productFactory.create();
+        }
+    }
+
+    @FunctionalInterface    // Creator
     static interface ProductFactory {
         Product create();
     }
